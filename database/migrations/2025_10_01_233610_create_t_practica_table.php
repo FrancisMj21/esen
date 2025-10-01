@@ -10,14 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('cursos', function (Blueprint $table) {
+        Schema::create('t_practica', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 120);
-            $table->tinyInteger('ciclo');
-            $table->smallInteger('horas_t');
-            $table->smallInteger('horas_p');
-            $table->tinyInteger('n_grupos');
-            $table->foreignId('t_practica_id')->constrained('t_practicas')->onDelete('cascade');
+            $table->string('nombre', 50);
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('cursos');
+        Schema::dropIfExists('t_practica');
     }
 };
