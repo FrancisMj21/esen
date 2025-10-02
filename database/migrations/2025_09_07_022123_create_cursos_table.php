@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->smallInteger('horas_t');
             $table->smallInteger('horas_p');
             $table->tinyInteger('n_grupos');
-            $table->foreignId('t_practica_id')->constrained('t_practicas')->onDelete('cascade');
+            $table->foreignId('t_practica_id')->constrained('t_practica')->onDelete('cascade');
             $table->timestamps();
         });
     }
