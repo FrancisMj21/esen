@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
-use App\Models\TPractica;
+use App\Models\Tpractica;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
@@ -16,7 +16,7 @@ class CursoController extends Controller
 
     public function create()
     {
-        $practicas = TPractica::orderBy('nombre')->get();
+        $practicas = Tpractica::orderBy('nombre')->get();
         return view('admin.curso.create', compact('practicas'));
     }
 
@@ -56,7 +56,7 @@ class CursoController extends Controller
     public function edit($id)
     {
         $curso = Curso::findOrFail($id);
-        $practicas = TPractica::orderBy('nombre')->get();
+        $practicas = Tpractica::orderBy('nombre')->get();
         return view('admin.curso.edit', compact('curso', 'practicas'));
     }
 
