@@ -14,9 +14,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ url('plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 
     <!--Iconos de Bootstraps-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -24,12 +24,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- jQuery -->
-    <script src="{{ url('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 
     <!--DATATABLE-->
-    <link rel="stylesheet" href={{ url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}>
-    <link rel="stylesheet" href={{ url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}>
-    <link rel="stylesheet" href={{ url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}>
+    <link rel="stylesheet" href={{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}>
+    <link rel="stylesheet" href={{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}>
+    <link rel="stylesheet" href={{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}>
 </head>
 
 <body class="hold-transition sidebar-mini">
