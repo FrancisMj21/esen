@@ -16,7 +16,7 @@ class Curso extends Model
 
     public function practica()
     {
-        return $this->belongsTo(TPractica::class, 't_practica_id');
+        return $this->belongsTo(Tpractica::class, 't_practica_id');
     }
 }
 
