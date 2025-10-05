@@ -17,7 +17,7 @@ class CargaController extends Controller
             ->orderByDesc('id')
             ->paginate(15);
 
-        return view('admin.cargas.index', compact('cargas'));
+        return view('admin.carga.index', compact('cargas'));
     }
 
     // Formulario de creación de carga
@@ -76,7 +76,7 @@ class CargaController extends Controller
             return back()->withErrors(['general' => 'No se pudo registrar la carga académica.'])->withInput();
         }
 
-        return redirect()->route('admin.cargas.index')
+        return redirect()->route('admin.carga.index')
             ->with('mensaje', 'Carga registrada correctamente')
             ->with('icono', 'success');
     }
@@ -145,7 +145,7 @@ class CargaController extends Controller
             return back()->withErrors(['general' => 'No se pudo actualizar la carga académica.'])->withInput();
         }
 
-        return redirect()->route('admin.cargas.index')
+        return redirect()->route('admin.carga.index')
             ->with('mensaje', 'Carga actualizada correctamente')
             ->with('icono', 'success');
     }
@@ -163,7 +163,7 @@ class CargaController extends Controller
         $carga = Carga::with(['docente', 'curso'])->findOrFail($id);
         $carga->delete();
 
-        return redirect()->route('admin.cargas.index')
+        return redirect()->route('admin.carga.index')
             ->with('mensaje', 'Carga eliminada correctamente')
             ->with('icono', 'success');
     }
