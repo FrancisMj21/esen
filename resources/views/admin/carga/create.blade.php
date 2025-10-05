@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-body">
-                <form action="{{ route('admin.cargas.store') }}" method="POST">
+                <form action="{{ route('admin.docentes.store') }}" method="POST">
                     @csrf
 
                     <div class="row">
@@ -94,7 +94,7 @@
                     </div>
 
                     <hr>
-                    <a href="{{ asset('admin/docentes') }}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ asset('admin/cargas') }}" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Registrar Asignación</button>
                 </form>
             </div>
