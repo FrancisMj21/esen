@@ -21,8 +21,8 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Docente</label><b>*</b>
-                            <select name="docente_id" class="form-control" required>
+                            <label for="docente_id">Docente</label><b>*</b>
+                            <select name="docente_id" id="docente_id" class="form-control" required>
                                 <option value="">-- Seleccione --</option>
                                 @foreach($docentes as $d)
                                     <option value="{{ $d->id }}" {{ old('docente_id') == $d->id ? 'selected' : '' }}>
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label>Curso</label><b>*</b>
+                            <label for="curso_id">Curso</label><b>*</b>
                             <select id="curso_id" name="curso_id" class="form-control" required>
                                 <option value="">-- Seleccione --</option>
                                 @foreach($cursos as $c)
@@ -57,27 +57,27 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <label>Grupos prácticos a asignar</label><b>*</b>
+                            <label for="grupos_asignados">Grupos prácticos a asignar</label><b>*</b>
                             <input type="number" id="grupos_asignados" name="grupos_asignados" class="form-control" min="0"
                                 value="{{ old('grupos_asignados', 0) }}" required>
                             @error('grupos_asignados')<small style="color:red">{{ $message }}</small>@enderror
                         </div>
 
                         <div class="col-md-3">
-                            <label>Horas teóricas a asignar</label><b>*</b>
+                            <label for="horas_t_carga">Horas teóricas a asignar</label><b>*</b>
                             <input type="number" id="horas_t_carga" name="horas_t_carga" class="form-control" min="0"
                                 value="{{ old('horas_t_carga', 0) }}" required>
                             @error('horas_t_carga')<small style="color:red">{{ $message }}</small>@enderror
                         </div>
 
                         <div class="col-md-3">
-                            <label>Horas prácticas (calculadas)</label>
+                            <label for="horas_p_carga">Horas prácticas (calculadas)</label>
                             <input type="number" id="horas_p_carga" class="form-control" value="{{ old('horas_p_carga') }}"
                                 readonly>
                         </div>
 
                         <div class="col-md-3">
-                            <label>Total horas</label>
+                            <label for="total_horas">Total horas</label>
                             <input type="number" id="total_horas" class="form-control" value="{{ old('total_horas') }}"
                                 readonly>
                         </div>
@@ -86,8 +86,9 @@
                     <br>
                     <div class="row">
                         <div class="col-md-12">
-                            <label>Observaciones</label>
-                            <input type="text" name="observaciones" class="form-control" value="{{ old('observaciones') }}">
+                            <label for="observaciones">Observaciones</label>
+                            <input type="text" id="observaciones" name="observaciones" class="form-control"
+                                value="{{ old('observaciones') }}">
                             @error('observaciones')<small style="color:red">{{ $message }}</small>@enderror
                         </div>
                     </div>
