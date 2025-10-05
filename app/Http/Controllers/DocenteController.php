@@ -111,7 +111,7 @@ class DocenteController extends Controller
             'fecha_nacimiento' => 'required|date',
             'cargo_id' => 'required|exists:cargos,id',
             '_cargo_id' => 'required|exists:cargo,id',
-            'categoria_id' => 'required|exists:categoria,id',
+            'categoria_id' => 'required|exists:categoria,id' . $docente->categoria_id,
             'email' => 'required|email|max:250|unique:users,email,' . $docente->user->id,
         ]);
 
@@ -134,7 +134,7 @@ class DocenteController extends Controller
         $usuario->save();
 
         return redirect()->route('admin.docentes.index')
-            ->with('mensaje', 'El docente fue actualizado correctamente. La contraseña ahora es su DNI.')
+            ->with('mensaje', 'El docente fue actualizado correctamente.')
             ->with('icono', 'success');
     }
 
