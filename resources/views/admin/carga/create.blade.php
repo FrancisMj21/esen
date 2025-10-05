@@ -104,7 +104,6 @@
     <script>
         document.querySelector('#myForm').addEventListener('submit', function (e) {
             console.log('Formulario enviado');
-            e.preventDefault();
             e.target.submit();
         });
 
