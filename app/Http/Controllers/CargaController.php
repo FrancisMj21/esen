@@ -78,6 +78,8 @@ class CargaController extends Controller
         // Calcular las horas prácticas (horas por grupo multiplicadas por el número de grupos asignados)
         $horas_p_carga = $data['grupos_asignados'] * $curso->horas_p;
 
+        $total_horas = $data['horas_t_carga'] + $horas_p_carga;
+
         // Registrar la carga académica con el valor calculado de horas prácticas
         Carga::create([
             'docente_id' => $data['docente_id'],
@@ -85,6 +87,7 @@ class CargaController extends Controller
             'grupos_asignados' => $data['grupos_asignados'],
             'horas_t_carga' => $data['horas_t_carga'],
             'horas_p_carga' => $horas_p_carga, // Agregar el valor calculado
+            'total_horas' => $total_horas,
             'observaciones' => $data['observaciones'] ?? null,
         ]);
 
