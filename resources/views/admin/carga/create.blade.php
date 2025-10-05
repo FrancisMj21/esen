@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-body">
-                <form action="{{ route('admin.docentes.store') }}" method="POST">
+                <form action="{{ route('admin.cargas.store') }}" method="POST">
                     @csrf
 
                     <div class="row">
@@ -150,5 +150,8 @@
             inpHt.addEventListener('input', refresh);
             document.addEventListener('DOMContentLoaded', refresh);
         })();
+        document.querySelector('form').addEventListener('submit', function (e) {
+            console.log('Formulario enviado');
+        });
     </script>
 @endsection
