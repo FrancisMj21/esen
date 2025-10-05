@@ -40,7 +40,7 @@ class CargaController extends Controller
                 return $c;
             });
 
-        return view('admin.cargas.create', compact('docentes', 'cursos'));
+        return view('admin.carga.create', compact('docentes', 'cursos'));
     }
 
     // Almacenar carga académica
