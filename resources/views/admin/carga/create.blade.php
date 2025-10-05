@@ -102,11 +102,72 @@
     </div>
 
     <script>
-        document.querySelector('#myForm').addEventListener('submit', function (e) {
+        // Agregar evento de envío del formulario
+        document.querySelector('form').addEventListener('submit', function (e) {
             console.log('Formulario enviado');
-            e.target.submit();
+            e.preventDefault();  // Evita el envío para depurar
+            e.target.submit();   // Enviar el formulario realmente
         });
 
+        // Función autoejecutable para manejar la lógica del formulario
+        (function () {
+            // Selección de elementos del DOM
+            const cursoSel = document.getElementById('curso_id');
+            const info = document.getElementById('infoCurso');
+            const inpGr = document.getElementById('grupos_asignados');
+            const inpHt = document.getElementById('horas_t_carga');
+            const inpHp = document.getElementById('horas_p_carga');
+            const inpTot = document.getElementById('total_horas');
 
+            // Función para limitar los valores dentro de un rango
+            function clamp(v, min, max) {
+                v = Number(v || 0);
+                return Math.max(min, Math.min(max, v));
+            }
+
+            // Función para actualizar los valores basados en la selección del curso
+            function refresh() {
+                const opt = cursoSel.options[cursoSel.selectedIndex];
+                if (!opt || !opt.dataset) return;
+
+                // Obtener los datos del curso seleccionado
+                const horasP = Number(opt.dataset.horasp || 0);  // Horas prácticas
+                const horasT = Number(opt.dataset.horast || 0);  // Horas teóricas
+                const grupos = Number(opt.dataset.grupos || 0);  // Total de grupos
+                const dispG = Number(opt.dataset.gruposDisp || opt.getAttribute('data-grupos-disp') || 0); // Grupos disponibles
+                const dispHT = Number(opt.dataset.horastDisp || opt.getAttribute('data-horast-disp') || 0); // Horas teóricas disponibles
+
+                // Establecer los límites máximos de grupos y horas teóricas
+                inpGr.max = dispG;
+                inpHt.max = dispHT;
+
+                // Corregir los valores si exceden los límites
+                inpGr.value = clamp(inpGr.value, 0, dispG);
+                inpHt.value = clamp(inpHt.value, 0, dispHT);
+
+                // Cálculos para las horas prácticas y el total de horas
+                const hp = Number(inpGr.value) * horasP;
+                const tot = hp + Number(inpHt.value);
+
+                // Actualizar los campos con los resultados
+                inpHp.value = hp;
+                inpTot.value = tot;
+
+                // Mostrar la disponibilidad en la interfaz de usuario
+                info.textContent =
+                    `Disponibilidad: ${dispG} grupo(s) práctico(s) y ${dispHT} h teóricas. ` +
+                    `(Curso: ${horasT}h T, ${horasP}h P, ${grupos} grupo(s) totales)`;
+            }
+
+            // Agregar los escuchadores de eventos
+            cursoSel.addEventListener('change', refresh); // Al cambiar el curso
+            inpGr.addEventListener('input', refresh);     // Al ingresar grupos prácticos
+            inpHt.addEventListener('input', refresh);     // Al ingresar horas teóricas
+            document.addEventListener('DOMContentLoaded', refresh); // Cuando la página se carga
+        })();
     </script>
+
+
+
+
 @endsection
