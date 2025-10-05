@@ -17,7 +17,7 @@ class CargaController extends Controller
             ->orderByDesc('id')
             ->paginate(15);
 
-        return view('admin.carga.index', compact('cargas'));
+        return view('admin.cargas.index', compact('cargas'));
     }
 
     // Formulario de creación de carga
@@ -40,7 +40,7 @@ class CargaController extends Controller
                 return $c;
             });
 
-        return view('admin.carga.create', compact('docentes', 'cursos'));
+        return view('admin.cargas.create', compact('docentes', 'cursos'));
     }
 
     // Almacenar carga académica
