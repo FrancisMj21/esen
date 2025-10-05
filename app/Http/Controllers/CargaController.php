@@ -46,6 +46,7 @@ class CargaController extends Controller
     // Almacenar carga académica
     public function store(Request $request)
     {
+        // Validar los datos recibidos
         $data = $request->validate([
             'docente_id' => 'required|exists:docentes,id',
             'curso_id' => 'required|exists:cursos,id',
@@ -54,7 +55,10 @@ class CargaController extends Controller
             'observaciones' => 'nullable|string|max:255',
         ]);
 
+        // Buscar el curso
         $curso = Curso::findOrFail($data['curso_id']);
+
+        // Calcular la disponibilidad de grupos y horas
         $acum = Carga::selectRaw('COALESCE(SUM(grupos_asignados), 0) sum_g, COALESCE(SUM(horas_t_carga), 0) sum_t')
             ->where('curso_id', $curso->id)
             ->first();
@@ -62,6 +66,7 @@ class CargaController extends Controller
         $dispG = max(0, $curso->n_grupos - $acum->sum_g);
         $dispT = max(0, $curso->horas_t - $acum->sum_t);
 
+        // Verificar que haya suficiente disponibilidad
         if ($data['grupos_asignados'] > $dispG) {
             return back()->withErrors(['grupos_asignados' => "No hay grupos suficientes. Restantes: $dispG"])->withInput();
         }
@@ -70,16 +75,15 @@ class CargaController extends Controller
             return back()->withErrors(['horas_t_carga' => "No hay horas teóricas disponibles. Restantes: $dispT"])->withInput();
         }
 
-        try {
-            Carga::create($data);
-        } catch (\Exception $e) {
-            return back()->withErrors(['general' => 'No se pudo registrar la carga académica.'])->withInput();
-        }
+        // Registrar la carga académica
+        Carga::create($data);
 
+        // Redirigir con mensaje de éxito
         return redirect()->route('admin.carga.index')
             ->with('mensaje', 'Carga registrada correctamente')
             ->with('icono', 'success');
     }
+
 
     // Ver detalles de una carga
     public function show($id)

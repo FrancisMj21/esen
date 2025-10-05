@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-body">
-                <form id="myForm" action="{{ route('admin.cargas.store') }}" method="POST">
+                <form action="{{ route('admin.cargas.store') }}" method="POST">
                     @csrf
 
                     <div class="row">
