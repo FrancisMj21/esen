@@ -94,7 +94,7 @@
                     </div>
 
                     <hr>
-                    <a href="{{ asset('admin/cargas') }}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('admin.cargas.index') }}" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Registrar Asignación</button>
                 </form>
             </div>
