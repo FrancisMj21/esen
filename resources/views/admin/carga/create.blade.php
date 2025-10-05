@@ -101,5 +101,61 @@
         </div>
     </div>
 
+    <script>
+        (function () {
+            const cursoSel = document.getElementById('curso_id');
+            const info = document.getElementById('infoCurso');
+            const inpGr = document.getElementById('grupos_asignados');
+            const inpHt = document.getElementById('horas_t_carga');
+            const inpHp = document.getElementById('horas_p_carga');
+            const inpTot = document.getElementById('total_horas');
 
+            function clamp(v, min, max) {
+                v = Number(v || 0);
+                return Math.max(min, Math.min(max, v));
+            }
+
+            function refresh() {
+                const opt = cursoSel.options[cursoSel.selectedIndex];
+                if (!opt || !opt.dataset) return;
+
+                const horasP = Number(opt.dataset.horasp || 0);
+                const horasT = Number(opt.dataset.horast || 0);
+                const grupos = Number(opt.dataset.grupos || 0);
+                const dispG = Number(opt.dataset.gruposDisp || opt.getAttribute('data-grupos-disp') || 0);
+                const dispHT = Number(opt.dataset.horastDisp || opt.getAttribute('data-horast-disp') || 0);
+
+                // límites dinámicos
+                inpGr.max = dispG;
+                inpHt.max = dispHT;
+
+                // corrige valores si exceden
+                inpGr.value = clamp(inpGr.value, 0, dispG);
+                inpHt.value = clamp(inpHt.value, 0, dispHT);
+
+                // cálculos
+                const hp = Number(inpGr.value) * horasP;
+                const tot = hp + Number(inpHt.value);
+
+                inpHp.value = hp;
+                inpTot.value = tot;
+
+                info.textContent =
+                    `Disponibilidad: ${dispG} grupo(s) práctico(s) y ${dispHT} h teóricas. ` +
+                    `(Curso: ${horasT}h T, ${horasP}h P, ${grupos} grupo(s) totales)`;
+            }
+
+            cursoSel.addEventListener('change', refresh);
+            inpGr.addEventListener('input', refresh);
+            inpHt.addEventListener('input', refresh);
+            document.addEventListener('DOMContentLoaded', refresh);
+        })();
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Previene el envío para verificar el log
+            console.log('Formulario enviado');
+            // Para enviar el formulario realmente, descomenta la siguiente línea:
+            // e.target.submit();
+        });
+
+    </script>
 @endsection
