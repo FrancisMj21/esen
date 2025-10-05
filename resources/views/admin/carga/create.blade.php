@@ -150,12 +150,6 @@
             inpHt.addEventListener('input', refresh);
             document.addEventListener('DOMContentLoaded', refresh);
         })();
-        document.querySelector('form').addEventListener('submit', function (e) {
-            e.preventDefault(); // Previene el envío para verificar el log
-            console.log('Formulario enviado');
-            // Para enviar el formulario realmente, descomenta la siguiente línea:
-            // e.target.submit();
-        });
 
     </script>
 @endsection
