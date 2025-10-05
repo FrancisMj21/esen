@@ -17,7 +17,7 @@ class CargaController extends Controller
             ->orderByDesc('id')
             ->paginate(15);
 
-        return view('admin.carga.index', compact('cargas'));
+        return view('admin.cargas.index', compact('cargas'));
     }
 
     // Formulario de creación de carga
@@ -92,7 +92,7 @@ class CargaController extends Controller
         ]);
 
         // Redirigir con mensaje de éxito
-        return redirect()->route('admin.carga.index')
+        return redirect()->route('admin.cargas.index')
             ->with('mensaje', 'Carga registrada correctamente')
             ->with('icono', 'success');
     }
