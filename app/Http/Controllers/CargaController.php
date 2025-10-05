@@ -75,14 +75,25 @@ class CargaController extends Controller
             return back()->withErrors(['horas_t_carga' => "No hay horas teóricas disponibles. Restantes: $dispT"])->withInput();
         }
 
-        // Registrar la carga académica
-        Carga::create($data);
+        // Calcular las horas prácticas (horas por grupo multiplicadas por el número de grupos asignados)
+        $horas_p_carga = $data['grupos_asignados'] * $curso->horas_p;
+
+        // Registrar la carga académica con el valor calculado de horas prácticas
+        Carga::create([
+            'docente_id' => $data['docente_id'],
+            'curso_id' => $data['curso_id'],
+            'grupos_asignados' => $data['grupos_asignados'],
+            'horas_t_carga' => $data['horas_t_carga'],
+            'horas_p_carga' => $horas_p_carga, // Agregar el valor calculado
+            'observaciones' => $data['observaciones'] ?? null,
+        ]);
 
         // Redirigir con mensaje de éxito
         return redirect()->route('admin.carga.index')
             ->with('mensaje', 'Carga registrada correctamente')
             ->with('icono', 'success');
     }
+
 
 
     // Ver detalles de una carga
