@@ -7,6 +7,7 @@ use App\Models\Docente;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CargaController extends Controller
 {
@@ -185,4 +186,5 @@ class CargaController extends Controller
             ->with('mensaje', 'Carga eliminada correctamente')
             ->with('icono', 'success');
     }
+
 }
