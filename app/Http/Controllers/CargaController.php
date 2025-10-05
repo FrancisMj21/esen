@@ -17,7 +17,7 @@ class CargaController extends Controller
             ->orderByDesc('id')
             ->paginate(15);
 
-        return view('admin.cargas.index', compact('cargas'));
+        return view('admin.carga.index', compact('cargas'));
     }
 
     // Formulario de creación de carga
