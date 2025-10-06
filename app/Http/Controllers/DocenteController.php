@@ -111,7 +111,7 @@ class DocenteController extends Controller
             'fecha_nacimiento' => 'required|date',
             'cargo_id' => 'required|exists:cargos,id',
             '_cargo_id' => 'required|exists:cargo,id',
-            'categoria_id' => 'required|exists:categoria,id' . $docente->categoria_id,
+            'categoria_id' => 'required|exists:categoria,id',
             'email' => 'required|email|max:250|unique:users,email,' . $docente->user->id,
         ]);
 
