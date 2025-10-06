@@ -98,12 +98,12 @@
                             <select name="categoria_id" class="form-control" required>
                                 <option value="">-- Seleccione --</option>
                                 @foreach($categorias as $categoria)
-                                    <option value="{{ $_cargo->id }}" {{ old('categoria_id', $docente->categoria_id) == $categoria->id ? 'selected' : '' }}>
+                                    <option value="{{ $categoria->id }}" {{ old('categoria_id', $docente->categoria_id) == $categoria->id ? 'selected' : '' }}>
                                         {{ $categoria->nombre }}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('cargo_id') <small style="color:red">{{ $message }}</small> @enderror
+                            @error('categoria_id') <small style="color:red">{{ $message }}</small> @enderror
                         </div>
 
                     </div>
