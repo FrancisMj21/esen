@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 import pandas as pd
 import math
 import os
-
+import sys
 
 # ===============================
 #  CONFIGURACIÓN Y CONEXIÓN
@@ -258,9 +258,7 @@ for idx, row in df.iterrows():
     est_cell.fill = PatternFill(start_color="FFB6C1", end_color="FFB6C1", fill_type="solid")  # Rosado claro
 
 
-# Ruta a la carpeta Descargas del usuario actual
-downloads_folder = os.path.join(os.path.expanduser("~"), "Downloads")
+output_file = sys.argv[1]
 
-output_file = os.path.join(downloads_folder, "cursos_semestre_2025_con_docentes.xlsx")
 wb.save(output_file)
 print(f"Archivo guardado en: {output_file}")

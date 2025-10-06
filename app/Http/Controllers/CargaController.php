@@ -193,20 +193,20 @@ class CargaController extends Controller
     public function ejecutarCarga()
     {
         $scriptPath = base_path('app/scripts/carga_interna.py');
+        $pythonPath = 'python3';
 
-        // Ruta absoluta a python.exe
-        $pythonPath = 'C:\\Python311\\python.exe';
+        // Ruta temporal en el contenedor
+        $outputFile = base_path('app/scripts/cursos_semestre_2025_con_docentes.xlsx');
 
-        $process = new Process([$pythonPath, $scriptPath]);
+        // Ejecutar el script
+        $process = new Process([$pythonPath, $scriptPath, $outputFile]);
         $process->run();
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        return response()->json([
-            'mensaje' => 'Script ejecutado con éxito',
-            'output' => $process->getOutput()
-        ]);
+        // Retornar el archivo como descarga
+        return response()->download($outputFile, 'cursos_semestre_2025_con_docentes.xlsx')->deleteFileAfterSend(true);
     }
 }
