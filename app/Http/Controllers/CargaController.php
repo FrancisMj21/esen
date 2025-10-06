@@ -8,6 +8,8 @@ use App\Models\Curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class CargaController extends Controller
 {
@@ -187,4 +189,24 @@ class CargaController extends Controller
             ->with('icono', 'success');
     }
 
+
+    public function ejecutarCarga()
+    {
+        $scriptPath = base_path('app/scripts/carga_interna.py');
+
+        // Ruta absoluta a python.exe
+        $pythonPath = 'C:\\Python311\\python.exe';
+
+        $process = new Process([$pythonPath, $scriptPath]);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        return response()->json([
+            'mensaje' => 'Script ejecutado con éxito',
+            'output' => $process->getOutput()
+        ]);
+    }
 }

@@ -88,3 +88,5 @@ Route::get('/admin/cargas/{id}/edit', [App\Http\Controllers\CargaController::cla
 Route::put('/admin/cargas/{id}', [App\Http\Controllers\CargaController::class, 'update'])->name('admin.cargas.update')->middleware('auth');
 Route::get('/admin/cargas/{id}/confirm-delete', [App\Http\Controllers\CargaController::class, 'confirmDelete'])->name('admin.cargas.confirmDelete')->middleware('auth');
 Route::delete('/admin/cargas/{id}', [App\Http\Controllers\CargaController::class, 'destroy'])->name('admin.cargas.destroy')->middleware('auth');
+
+Route::get('/ejecutar-carga', [App\Http\Controllers\CargaController::class, 'ejecutarCarga'])->name('ejecutar.carga');

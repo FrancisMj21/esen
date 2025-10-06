@@ -21,6 +21,9 @@
                         <a href="{{ route('admin.cargas.create') }}" class="btn btn-primary">
                             Asignar Carga
                         </a>
+                        <a href="{{ route('ejecutar.carga') }}" class="btn btn-success">
+                            Descargar Carga
+                        </a>
                     </div>
                 </div>
 
