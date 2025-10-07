@@ -192,16 +192,12 @@ class CargaController extends Controller
 
     public function ejecutarCarga()
     {
-        $installPython = new Process(['bash', '-c', 'apt-get update && apt-get install -y python3 python3-pip']);
-        $installPython->run();
+        // Instala el conector dentro del contenedor en runtime
+        $installConnector = new Process(['bash', '-c', 'apt-get update && apt-get install -y python3-pip && pip install mysql-connector-python --break-system-packages']);
+        $installConnector->run();
 
-        // Instalar el conector MySQL
-        $installDependencies = new Process(['bash', '-c', 'pip install mysql-connector-python']);
-        $installDependencies->run();
-
-
+        // Ejecuta el script Python
         $scriptPath = base_path('app/scripts/carga_interna.py');
-        // Ruta temporal en el contenedor para el Excel
         $outputFile = base_path('app/scripts/cursos_semestre_2025_con_docentes.xlsx');
 
         $process = new Process(['python3', $scriptPath, $outputFile]);
