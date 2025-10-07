@@ -192,6 +192,9 @@ class CargaController extends Controller
 
     public function ejecutarCarga()
     {
+        $installPython = new Process(['bash', '-c', 'apt-get update && apt-get install -y python3 python3-pip']);
+        $installPython->run();
+
         $scriptPath = base_path('app/scripts/carga_interna.py');
 
         // Ruta temporal en el contenedor para el Excel
