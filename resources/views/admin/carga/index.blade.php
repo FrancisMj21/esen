@@ -59,10 +59,6 @@
                                             title="Ver">
                                             <i class="bi bi-eye-fill"></i>
                                         </a>
-                                        <a href="{{ route('admin.cargas.edit', $c->id) }}" class="btn btn-success btn-sm"
-                                            title="Editar">
-                                            <i class="bi bi-pen-fill"></i>
-                                        </a>
                                         <a href="{{ route('admin.cargas.confirmDelete', $c->id) }}"
                                             class="btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></a>
                                     </td>
