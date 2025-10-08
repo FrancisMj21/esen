@@ -202,7 +202,7 @@ class CargaController extends Controller
 
         // Rutas del script y del archivo
         $scriptPath = base_path('app/scripts/carga_interna.py');
-        $outputFile = base_path('app/scripts/cursos_semestre_2025_con_docentes.xlsx');
+        $outputFile = base_path('app/scripts/CARGA_INTERNA.xlsx');
 
         // Ejecutar el script Python
         $process = new Process(['python3', $scriptPath, $outputFile]);
@@ -213,7 +213,7 @@ class CargaController extends Controller
         }
 
         // Retornar el archivo como descarga
-        return response()->download($outputFile, 'cursos_semestre_2025_con_docentes.xlsx')
+        return response()->download($outputFile, 'CARGA_INTERNA.xlsx')
             ->deleteFileAfterSend(true);
     }
 
@@ -229,8 +229,8 @@ class CargaController extends Controller
         $installDeps->run();
 
         // Rutas del script y del archivo
-        $scriptPath = base_path('app/scripts/carga_interna.py');
-        $outputFile = base_path('app/scripts/cursos_semestre_2025_con_docentes.xlsx');
+        $scriptPath = base_path('app/scripts/carga_viac.py');
+        $outputFile = base_path('app/scripts/CARGA_VIAC.xlsx');
 
         // Ejecutar el script Python
         $process = new Process(['python3', $scriptPath, $outputFile]);
@@ -241,7 +241,7 @@ class CargaController extends Controller
         }
 
         // Retornar el archivo como descarga
-        return response()->download($outputFile, 'cursos_semestre_2025_con_docentes.xlsx')
+        return response()->download($outputFile, 'CARGA_VIAC.xlsx')
             ->deleteFileAfterSend(true);
     }
 }
