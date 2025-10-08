@@ -356,5 +356,8 @@ crear_hoja(wb, "DOCENTES", docentes_docentes)
 crear_hoja(wb, "JEFE DE PRACTICA CONTRATO", docentes_jp)
 
 # Guardar
-wb.save("CARGA_VIAC.xlsx")
-print("Archivo 'CARGA_VIAC.xlsx' creado con ambas hojas correctamente.")
+output_file = sys.argv[1]
+
+wb.save(output_file)
+print(f"Archivo guardado en: {output_file}")
+
