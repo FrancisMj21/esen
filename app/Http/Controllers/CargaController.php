@@ -216,4 +216,32 @@ class CargaController extends Controller
         return response()->download($outputFile, 'cursos_semestre_2025_con_docentes.xlsx')
             ->deleteFileAfterSend(true);
     }
+
+
+    public function ejecutarCarga2()
+    {
+        // Instalar dependencias necesarias
+        $installDeps = new Process([
+            'bash',
+            '-c',
+            'apt-get update && apt-get install -y python3-pip && pip install mysql-connector-python openpyxl pandas --break-system-packages'
+        ]);
+        $installDeps->run();
+
+        // Rutas del script y del archivo
+        $scriptPath = base_path('app/scripts/carga_interna.py');
+        $outputFile = base_path('app/scripts/cursos_semestre_2025_con_docentes.xlsx');
+
+        // Ejecutar el script Python
+        $process = new Process(['python3', $scriptPath, $outputFile]);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        // Retornar el archivo como descarga
+        return response()->download($outputFile, 'cursos_semestre_2025_con_docentes.xlsx')
+            ->deleteFileAfterSend(true);
+    }
 }

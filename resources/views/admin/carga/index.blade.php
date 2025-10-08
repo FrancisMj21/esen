@@ -22,7 +22,10 @@
                             Asignar Carga
                         </a>
                         <a href="{{ route('ejecutar.carga') }}" class="btn btn-success">
-                            Descargar Carga
+                            Descargar Carga Interna
+                        </a>
+                        <a href="{{ route('ejecutar.carga2') }}" class="btn btn-success">
+                            Descargar Carga VIAC
                         </a>
                     </div>
                 </div>

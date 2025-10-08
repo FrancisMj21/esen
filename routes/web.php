@@ -90,3 +90,5 @@ Route::get('/admin/cargas/{id}/confirm-delete', [App\Http\Controllers\CargaContr
 Route::delete('/admin/cargas/{id}', [App\Http\Controllers\CargaController::class, 'destroy'])->name('admin.cargas.destroy')->middleware('auth');
 
 Route::get('/ejecutar-carga', [App\Http\Controllers\CargaController::class, 'ejecutarCarga'])->name('ejecutar.carga');
+
+Route::get('/ejecutar-carga2', [App\Http\Controllers\CargaController::class, 'ejecutarCarga2'])->name('ejecutar.carga2');
