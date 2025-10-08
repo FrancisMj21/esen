@@ -44,10 +44,11 @@ SELECT
 FROM 
     cargas
 INNER JOIN docentes ON docentes.id = cargas.docente_id
-INNER JOIN cargo ON cargo.id = docentes.cargo_id
+INNER JOIN cargo ON cargo.id = docentes._cargo_id
 INNER JOIN categoria ON categoria.id = docentes.categoria_id
 INNER JOIN cursos ON cursos.id = cargas.curso_id
 INNER JOIN t_practica ON t_practica.id = cursos.t_practica_id;
+
 
 """
 
