@@ -245,21 +245,21 @@ def crear_hoja(wb, nombre_hoja, docentes_filtrados):
     aplicar_color(ws, 'M9:S11', verde_suave)
     aplicar_color(ws, 'T9:U11', amarillo_suave)
 
-    img_path = os.path.join(os.getcwd(), "1esen.jpg")
-    img_path = os.path.abspath(img_path)
+    #/*img_path = os.path.join(os.getcwd(), "1esen.jpg")
+    #img_path = os.path.abspath(img_path)
 
-    img = Image(img_path)
-    img.width = 70
-    img.height = 70
-    ws.add_image(img, "B2")
+    #img = Image(img_path)
+    #img.width = 70
+    #img.height = 70
+    #ws.add_image(img, "B2")
 
-    img_path = os.path.join(os.getcwd(), "2unjbg.jpg")
-    img_path = os.path.abspath(img_path)
+    #img_path = os.path.join(os.getcwd(), "2unjbg.jpg")
+    #img_path = os.path.abspath(img_path)
 
-    img2 = Image(img_path)
-    img2.width = 70
-    img2.height = 70
-    ws.add_image(img2, "T2")
+    #img2 = Image(img_path)
+    #img2.width = 70
+    #img2.height = 70
+    #ws.add_image(img2, "T2")
 
 
     row_num = 12
