@@ -224,7 +224,7 @@ class CargaController extends Controller
         $installDeps = new Process([
             'bash',
             '-c',
-            'apt-get update && apt-get install -y python3-pip && pip install mysql-connector-python openpyxl pandas --break-system-packages'
+            'apt-get update && apt-get install -y python3-pip && pip install mysql-connector-python openpyxl pandas Pillow --break-system-packages'
         ]);
         $installDeps->run();
 
